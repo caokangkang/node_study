@@ -1,18 +1,23 @@
 const fs = require('fs')
 module.exports.parser = path => {
     const readStream = fs.createReadStream(path)
-    let reqData = [];
-    let size = 0;
     return new Promise(resolve => {
          // ##BEGIN## 代码已加密
-gywgywgywgywgywgywgywgywgdmgd9gdggdcg9kgdwgdmgd9gdggdDgqDgdUgdvgqRgqdgdcgdggdwgdggqdgqlgywgdcgdggdwgdggywgcRgckgywgRd
-gywgywgywgywgywgywgywgywgywgywgywgywgdmgd9gdHgcvgdggdwgdggqDgdYgd=gdegdkgqRgdcgdggdwgdggqkgc9
-gywgywgywgywgywgywgywgywgywgywgywgywgdegdngR9gd9gywgqLgcRgywgdcgdggdwgdggqDgdPgd9gdvgdRgdwgdkgc9
-gywgywgywgywgywgywgywgywgRkgqkgc9
-gywgywgywgywgywgywgywgywgdmgd9gdggdcg9kgdwgdmgd9gdggdDgqDgdUgdvgqRgqdgd9gdvgdcgqdgqlgywgddgd=gdvgdqgdwgdngdUgdvgywgqRgqkgywgRd
-gywgywgywgywgywgywgywgywgywgywgywgywgdqgdUgdvgdegdwgywgdcgdggdwgdggywgcRgywgcPgd=gddgddgd9gdmgqDgdqgdUgdvgdqgdggdwgqRgdmgd9gdHgcvgdggdwgdggqlgywgdegdngR9gd9gqkgc9
-gywgywgywgywgywgywgywgywgywgywgywgywgdmgd9gdegdUgdPgRggd9gqRgcwg9kg9cg9qgqDgdYgdggdmgdegd9gqRgdcgdggdwgdggqDgdwgdUg9kgdwgdmgdngdvgdRgqRgqkgqkgqk
-gywgywgywgywgywgywgywgywgRkgqkgc9
+        //  二分查找
+         const { parser } = require('../index')
+         const { user } = await parser(__dirname + '/data/data.json') 
+         expect(user).toBe('tom');
+         let count = 0;
+         let str = '';
+         user.on('data', (chunk) => {
+             console.log(`${++count}接受到：${chunk.length}`);
+             str += chunk
+         })
+         user.on('end', () => {
+             console.log("---结束---");
+             console.log(`读取到的数据是：${str}`);
+             str = str.toString('utf-8'); //指定编码方式
+        })
          // ##END##
     })
 }

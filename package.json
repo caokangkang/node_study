@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/caokangkang/node_study/issues"
   },
-  "homepage": "https://github.com/caokangkang/node_study#readme"
+  "homepage": "https://github.com/caokangkang/node_study#readme",
+  "dependencies": {
+    "koa": "^2.13.0"
+  }
 }
